@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="msymlimport" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="msymlimport"
+       version="1.1">
+
+    <object class="msYmlImportLink" table="msymlimport_links" extends="xPDOObject">
+        <field key="docid" dbtype="int" precision="10" phptype="integer" null="false" default="0" index="index" />
+        <field key="externalkey" dbtype="int" precision="10" phptype="integer" null="false" default="0" index="index" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE">
+            <column key="docid" length="" collation="A" null="false" />
+        </index>
+
+        <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+            <column key="externalkey" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="Resource" class="modResource" local="docid" foreign="id" cardinality="one" owner="foreign" />
+
+    </object>
+
+</model>
