@@ -104,7 +104,7 @@ if ($xml === false) {
     exit;
 }
 $created_categories = $updated_categories = $created_products = $updated_products =  0;
-if($importCats == 0){
+if($importCats == 1){
 	$categories = $xml->sortedXPath('/*/shop/categories/category', '@id');
 	foreach ($categories as $category) {
 		$modx->error->reset();
@@ -123,6 +123,7 @@ if($importCats == 0){
             'parent'    => $parent,
             'context_key' => 'web',
             'published' => 1,
+			'template' => 3,
 			'externalkey' => $catId,
 			'alias' => $catId . '-' . (string)$category
         );
@@ -188,6 +189,7 @@ if($importOffers == 1){
         $data['price'] = (float)$offer->price;
         $data['vendor'] = $vendor->get('id');
         $data['published'] = 1;
+		$data['template'] = 4;
         $data['content'] = (string)$offer->description;
 		$data['in_stock'] = (boolean)$offer['available'];
 		$data['article'] = (string)$offer->vendorCode;
@@ -205,8 +207,7 @@ if($importOffers == 1){
                     $data['height'] = (float)$param;
                     break;
                 case "Цвет арматуры":
-                    $color = array_key_exists((string)$param, $colors_map) ? $colors_map[(string)$param] : $default_color;
-                    $data['armature_color'] = explode(',',$color);
+                    $data['armature_color'] = explode(',',(string)$param);
                     break;
                 case "Материал арматуры":
                     $data['armature_material'] = explode(',',(string)$param);
