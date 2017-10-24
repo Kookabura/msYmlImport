@@ -25,6 +25,16 @@ $tmp = array(
         'value' => true,
         'area' => 'msymlimport_main',
     ),
+    'msyi.product_template' => array(
+        'xtype' => 'textfield',
+        'value' => '',
+        'area' => 'msymlimport_main',
+    ),
+    'msyi.category_template' => array(
+        'xtype' => 'textfield',
+        'value' => '',
+        'area' => 'msymlimport_main',
+    ),
 );
 
 foreach ($tmp as $k => $v) {
